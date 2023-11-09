@@ -23,6 +23,6 @@
   "scripts": {
     "dev": "tsx src/server.js",
     "build": "tsup src",
-    "serve": "node dist/server.js"
+    "serve": "node dist/server.js --output public"
   }
 }
