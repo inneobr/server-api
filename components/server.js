@@ -1,8 +1,8 @@
 import chromium from 'chrome-aws-lambda';
 
 const isDev = !process.env.AWS_REGION;
-let puppeteer = {};
-let options = {};
+let puppeteer = null;
+let options = null;
 
 if(isDev) {
   puppeteer = require('puppeteer');  
@@ -10,11 +10,11 @@ if(isDev) {
 }
 
 if(!isDev) {
-  puppeteer.require('puppeteer-core');
+  puppeteer = require('puppeteer-core');
   options = {
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
-    executablePath: require('puppeteer').executablePath(),
+    executablePath: puppeteer.executablePath(),
     headless: chromium.headless,
     ignoreHTTPSErrors: true,
   }
